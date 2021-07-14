@@ -44,11 +44,20 @@ app.userDay = (month) => {
         daysInMonth.push(i)
     }
 
-    daysInMonth.forEach(day => {
-        const optionEl = document.createElement('option')
-        optionEl.textContent = day;
-        selectDaysEl.appendChild(optionEl)
-    })
+    function appendDay() {
+        daysInMonth.forEach(day => {
+            const optionEl = document.createElement('option');
+            optionEl.textContent = day;
+            selectDaysEl.appendChild(optionEl)
+        })
+    }
+
+    if(!selectDaysEl.childElementCount) {
+        appendDay()
+    } else {
+        selectDaysEl.length = 0;
+        appendDay()
+    }
 }
 
 // function runs on page load.  Grabs the form element and listens for a submit event.  On submit, it prevents default action, and grabs the index of the users selected month and day.  It then passes these values as arguments to the app.retrieveDates function
@@ -62,19 +71,31 @@ app.selectUserInput = () => {
     })
 }
 
+// recieves users selected month and day as parameters. We then grab the current year the user is using the app.  With the current year, and the users selected month and day, we retrieve dates from 5,10 and 20 years prior in Iso format to be passed into API.  These dates are saved into an array.
 app.retrieveDates = (month, day) => {
-    function getYear() {
-        const date = new Date();
-        const getYear = date.getFullYear();
-        return getYear;
-    }
-    const year = getYear();
-    const userSelectedDate = new Date(year, month, day).toISOString().split('T')[0];
+    const year = new Date().getFullYear();
     
     const fiveYearsAgo = new Date(year-5, month, day).toISOString().split('T')[0];
+    const fiveYearsAgoWeek = new Date(year-5, month, day+7).toISOString().split('T')[0];
     const tenYearsAgo = new Date (year-10, month, day).toISOString().split('T')[0];
+    const tenYearsAgoWeek = new Date(year-10, month, day+7).toISOString().split('T')[0];
     const twentyYearsAgo = new Date (year-20, month, day).toISOString().split('T')[0];
-    console.log(userSelectedDate ,fiveYearsAgo, tenYearsAgo, twentyYearsAgo)
+    const twentyYearsAgoWeek = new Date (year-20, month, day+7).toISOString().split('T')[0];
+
+    const dates = [fiveYearsAgo, fiveYearsAgoWeek, tenYearsAgo, tenYearsAgoWeek, twentyYearsAgo, twentyYearsAgoWeek];
+    app.fetchMovie(dates)
+}
+
+app.fetchMovie = (dates) => {
+    console.log(dates)
+    const url = new URL(`${app.baseURL}/3/discover/movie?api_key=${app.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=${dates[0]}&primary_release_date.lte=${dates[1]}&with_original_language=en&with_watch_monetization_types=flatrate`);
+
+
+    fetch(url)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+        })
 }
 
 app.init = () => {
