@@ -1,5 +1,6 @@
 @import "setup";
 @import "variables";
+@import "button";
 
 html {
     font-size: 62.5%;
@@ -7,6 +8,7 @@ html {
 
 p {
     margin: 0;
+    line-height: 3rem;
 }
 
 header {
@@ -25,21 +27,18 @@ header p {
     color: white;
 }
 
-button {
-    color: white;
-    background-color: $orange;
-    opacity: 0.7;
-    margin: 50px 0 50px 0;
-    padding: 20px 50px 20px 50px;
-    border: none;
-    text-transform: uppercase;
-    font-size: 1.5rem;
-    transition: all 0.2s;
+form {
+    padding: 50px 0 50px 0;
 }
 
-button:hover{
-    opacity: 1;
-    }
+select#months,
+select#days {
+    padding: 10px;
+    margin-right: 5px;
+    font-weight: 400;
+    font-size: 1.5rem;
+    text-align: center;
+}
 
 section {
     background-color: $blueGreen;
