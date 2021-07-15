@@ -48,7 +48,11 @@ app.userDay = (month) => {
         daysInMonth.forEach(day => {
             const optionEl = document.createElement('option');
             optionEl.textContent = day;
+<<<<<<< HEAD
+            selectDaysEl.appendChild(optionEl);
+=======
             selectDaysEl.appendChild(optionEl)
+>>>>>>> main
         })
     }
 
@@ -67,7 +71,69 @@ app.selectUserInput = () => {
         e.preventDefault();
         const monthIndex = document.querySelector('#months').selectedIndex;
         const dayIndex = document.querySelector('#days').selectedIndex+1;
+<<<<<<< HEAD
+
         app.retrieveDates(monthIndex, dayIndex)
+    })
+}
+
+// recieves users selected month and day as parameters. We then grab the current year the user is using the app.  With the current year, and the users selected month and day, we retrieve dates from 5,10 and 20 years prior in Iso format to be passed into API.  These dates are saved into an array.
+app.retrieveDates = (month, day) => {
+    const year = new Date().getFullYear();
+    
+    const fiveYearsAgo = new Date(year-5, month, day).toISOString().split('T')[0];
+    const fiveYearsAgoWeek = new Date(year-5, month, day+7).toISOString().split('T')[0];
+    const tenYearsAgo = new Date (year-10, month, day).toISOString().split('T')[0];
+    const tenYearsAgoWeek = new Date(year-10, month, day+7).toISOString().split('T')[0];
+    const twentyYearsAgo = new Date (year-20, month, day).toISOString().split('T')[0];
+    const twentyYearsAgoWeek = new Date (year-20, month, day+7).toISOString().split('T')[0];
+
+    const dates = [[fiveYearsAgo, fiveYearsAgoWeek], [tenYearsAgo, tenYearsAgoWeek], [twentyYearsAgo, twentyYearsAgoWeek]];
+    app.fetchMovie(dates)
+}
+
+// function recieves dates in the form of an array.  We pass those date through a function called fetchMovie that takes in 2 arguments, a start and end date, which allows us to search for the entirety of the week.  This happens 3 times, with arrays of 5, 10 and 20 years.  This promise gets pushed into an array, which we then use promise.all() to resolve all 3 promises, and push the results into app.displayMovies()
+app.fetchMovie = (dates) => {
+
+    const promiseMovieArray = [];
+
+    const fetchMovie = (start, end) => {
+        promiseMovieArray.push(
+            fetch(`${app.baseURL}/3/discover/movie?api_key=${app.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=${start}&primary_release_date.lte=${end}&with_original_language=en&with_watch_monetization_types=flatrate`)
+        .then(res => res.json())
+        )
+    }
+
+    dates.forEach(date => {
+        fetchMovie(date[0], date[1])
+    })
+
+    const movieResults = Promise.all(promiseMovieArray)
+        .then(res => {
+            app.displayMovies(res)
+        })
+}
+
+
+app.displayMovies = (movies) => {
+    const section = document.querySelector('section');
+
+    movies.forEach(movie => {
+        const { original_title, overview, poster_path, release_date } = movie.results[0];
+
+        const newListElement = document.createElement('li');
+
+        newListElement.innerHTML =`
+        <div>
+            <img src="https://www.themoviedb.org/t/p/w220_and_h330_face/${poster_path}" alt="${original_title}">
+            <h2>${original_title} (${release_date})</h2>
+            <p>${overview}</p>
+        </div>
+        `;
+        section.appendChild(newListElement)
+=======
+        app.retrieveDates(monthIndex, dayIndex)
+>>>>>>> main
     })
 }
 
