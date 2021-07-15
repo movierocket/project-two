@@ -111,7 +111,22 @@ app.fetchMovie = (dates) => {
 
 
 app.displayMovies = (movies) => {
-    
+    const section = document.querySelector('section');
+
+    movies.forEach(movie => {
+        const { original_title, overview, poster_path, release_date } = movie.results[0];
+
+        const newListElement = document.createElement('li');
+
+        newListElement.innerHTML =`
+        <div>
+            <img src="https://www.themoviedb.org/t/p/w220_and_h330_face/${poster_path}" alt="${original_title}">
+            <h2>${original_title} (${release_date})</h2>
+            <p>${overview}</p>
+        </div>
+        `;
+        section.appendChild(newListElement)
+    })
 }
 
 
