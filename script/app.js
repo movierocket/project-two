@@ -48,7 +48,11 @@ app.userDay = (month) => {
         daysInMonth.forEach(day => {
             const optionEl = document.createElement('option');
             optionEl.textContent = day;
+<<<<<<< HEAD
             selectDaysEl.appendChild(optionEl);
+=======
+            selectDaysEl.appendChild(optionEl)
+>>>>>>> main
         })
     }
 
@@ -67,6 +71,7 @@ app.selectUserInput = () => {
         e.preventDefault();
         const monthIndex = document.querySelector('#months').selectedIndex;
         const dayIndex = document.querySelector('#days').selectedIndex+1;
+<<<<<<< HEAD
 
         app.retrieveDates(monthIndex, dayIndex)
     })
@@ -126,9 +131,38 @@ app.displayMovies = (movies) => {
         </div>
         `;
         section.appendChild(newListElement)
+=======
+        app.retrieveDates(monthIndex, dayIndex)
+>>>>>>> main
     })
 }
 
+// recieves users selected month and day as parameters. We then grab the current year the user is using the app.  With the current year, and the users selected month and day, we retrieve dates from 5,10 and 20 years prior in Iso format to be passed into API.  These dates are saved into an array.
+app.retrieveDates = (month, day) => {
+    const year = new Date().getFullYear();
+    
+    const fiveYearsAgo = new Date(year-5, month, day).toISOString().split('T')[0];
+    const fiveYearsAgoWeek = new Date(year-5, month, day+7).toISOString().split('T')[0];
+    const tenYearsAgo = new Date (year-10, month, day).toISOString().split('T')[0];
+    const tenYearsAgoWeek = new Date(year-10, month, day+7).toISOString().split('T')[0];
+    const twentyYearsAgo = new Date (year-20, month, day).toISOString().split('T')[0];
+    const twentyYearsAgoWeek = new Date (year-20, month, day+7).toISOString().split('T')[0];
+
+    const dates = [fiveYearsAgo, fiveYearsAgoWeek, tenYearsAgo, tenYearsAgoWeek, twentyYearsAgo, twentyYearsAgoWeek];
+    app.fetchMovie(dates)
+}
+
+app.fetchMovie = (dates) => {
+    console.log(dates)
+    const url = new URL(`${app.baseURL}/3/discover/movie?api_key=${app.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=${dates[0]}&primary_release_date.lte=${dates[1]}&with_original_language=en&with_watch_monetization_types=flatrate`);
+
+
+    fetch(url)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+        })
+}
 
 app.init = () => {
     app.userMonth();

@@ -26,8 +26,7 @@ figure {
 }
 
 hr {
-  -webkit-box-sizing: content-box;
-          box-sizing: content-box;
+  box-sizing: content-box;
   height: 0;
   overflow: visible;
 }
@@ -140,8 +139,7 @@ fieldset {
 }
 
 legend {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   color: inherit;
   display: table;
   max-width: 100%;
@@ -159,8 +157,7 @@ textarea {
 }
 
 [type=checkbox], [type=radio] {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   padding: 0;
 }
 
@@ -212,13 +209,11 @@ template {
 }
 
 html {
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
 *, *:before, *:after {
-  -webkit-box-sizing: inherit;
-          box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 .sr-only {
@@ -235,12 +230,50 @@ html {
   overflow: hidden;
 }
 
+button {
+  color: white;
+  background-color: #F26606;
+  opacity: 0.9;
+  padding: 10.5px 30px 10.5px 30px;
+  margin-left: 5px;
+  border: none;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  transition: all 0.2s;
+}
+
+button:hover {
+  cursor: pointer;
+  -webkit-animation: launch 0.5s ease-in-out infinite alternate;
+          animation: launch 0.5s ease-in-out infinite alternate;
+  opacity: 1;
+}
+
+@-webkit-keyframes launch {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff9900, 0 0 70px #ff9900, 0 0 80px #ff9900, 0 0 100px #ff9900, 0 0 150px #ff9900;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff9900, 0 0 35px #ff9900, 0 0 40px #ff9900, 0 0 50px #ff9900, 0 0 75px #ff9900;
+  }
+}
+
+@keyframes launch {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff9900, 0 0 70px #ff9900, 0 0 80px #ff9900, 0 0 100px #ff9900, 0 0 150px #ff9900;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff9900, 0 0 35px #ff9900, 0 0 40px #ff9900, 0 0 50px #ff9900, 0 0 75px #ff9900;
+  }
+}
 html {
   font-size: 62.5%;
 }
 
 p {
   margin: 0;
+  line-height: 3rem;
 }
 
 header {
@@ -259,25 +292,21 @@ header p {
   color: white;
 }
 
-button {
-  color: white;
-  background-color: #F26606;
-  opacity: 0.7;
-  margin: 50px 0 50px 0;
-  padding: 20px 50px 20px 50px;
-  border: none;
-  text-transform: uppercase;
-  font-size: 1.5rem;
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
+form {
+  padding: 50px 0 50px 0;
 }
 
-button:hover {
-  opacity: 1;
+select#months,
+select#days {
+  padding: 10px;
+  margin-right: 5px;
+  font-weight: 400;
+  font-size: 1.5rem;
+  text-align: center;
 }
 
 section {
-  background-color: #0F5163;
+  background-color: #136c85;
   height: 400px;
 }
 
@@ -288,5 +317,5 @@ footer {
   font-family: "Poppins", sans-serif;
   font-size: 1.5rem;
   height: 50px;
-  padding-top: 20px;
+  padding-top: 10px;
 }
