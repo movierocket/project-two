@@ -48,11 +48,7 @@ app.userDay = (month) => {
         daysInMonth.forEach(day => {
             const optionEl = document.createElement('option');
             optionEl.textContent = day;
-<<<<<<< HEAD
             selectDaysEl.appendChild(optionEl);
-=======
-            selectDaysEl.appendChild(optionEl)
->>>>>>> main
         })
     }
 
@@ -71,7 +67,6 @@ app.selectUserInput = () => {
         e.preventDefault();
         const monthIndex = document.querySelector('#months').selectedIndex;
         const dayIndex = document.querySelector('#days').selectedIndex+1;
-<<<<<<< HEAD
 
         app.retrieveDates(monthIndex, dayIndex)
     })
@@ -131,9 +126,6 @@ app.displayMovies = (movies) => {
         </div>
         `;
         section.appendChild(newListElement)
-=======
-        app.retrieveDates(monthIndex, dayIndex)
->>>>>>> main
     })
 }
 
