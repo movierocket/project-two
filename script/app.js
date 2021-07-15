@@ -112,6 +112,7 @@ app.fetchMovie = (dates) => {
 
 app.displayMovies = (movies) => {
     const section = document.querySelector('section');
+    section.innerHTML = '';
 
     movies.forEach(movie => {
         const { original_title, overview, poster_path, release_date } = movie.results[0];
