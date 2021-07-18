@@ -467,11 +467,10 @@ section .movieText {
   background-color: #0F152B;
   position: relative;
   height: 100px;
-  display: none;
 }
 
 footer {
-  background-color: #0F152B;
+  background-color: #0f152b;
   text-align: center;
   color: white;
   font-family: "Poppins", sans-serif;
