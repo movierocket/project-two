@@ -1,0 +1,60 @@
+// 980px breakpoint
+@media screen and (max-width: 980px) {
+    
+        .wrapper {
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .movieText {
+            margin-left: 0px !important;
+        }
+  }
+
+//   860px Breakpoint
+  @media screen and (max-width: 860px) {
+      img {
+          max-height: 250px !important;
+          width: auto;
+      }
+    
+      .imgContainer {
+          height: 300px !important;
+
+      }
+
+      .movieResults {
+        margin: 0 100px 50px 100px !important;
+
+    }
+
+    .relaunch {
+        text-align: center !important;
+        height: 150px !important;
+    }
+    .relaunchButton {
+        position: static !important;
+        margin-top: 20px !important;
+        margin-bottom: 50px !important;
+    
+    }
+  }
+
+//   500px breakpoint
+  @media screen and (max-width: 500px) {
+
+    .movieResults {
+        margin: 0 !important;
+        border-radius: 0px !important;
+    }
+
+    img {
+        max-height: 200px !important;
+        width: auto;
+    }
+  
+    .imgContainer {
+        height: 250px !important;
+
+    }
+}

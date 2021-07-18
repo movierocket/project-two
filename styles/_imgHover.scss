@@ -1,0 +1,13 @@
+// Image transition on hover
+.imgContainer {  
+    height: 350px;
+    width: auto; 
+  }
+  
+  .innerImg {
+    transition: 0.3s;
+  }
+  
+  .innerImg:hover {
+    transform: scale(1.1);
+  }
