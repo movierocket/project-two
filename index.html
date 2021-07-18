@@ -22,21 +22,24 @@
         <form action="#" method="#" class="myForm" name="myForm">
                         
             <label for="months"></label>
-            <select name="month" id="months"></select>
+            <select name="month" id="months">
+                <option value disabled selected>MONTH</option>
+            </select>
             
             <label for="days"></label>
-            <select name="day" id="days"></select>
+            <select name="day" id="days">
+                <option value disabled selected>DAY</option>
+            </select>
             
             <button type="submit">Launch Me</button>
         </form>
     </header>
 
     <section>
-
+        <ul class="results"></ul>
     </section>
 
     <div class="relaunch">
-        <button class="relaunchButton type="submit">Relaunch</button>
     </div>  
 
     <footer>
