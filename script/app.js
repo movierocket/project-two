@@ -112,10 +112,14 @@ app.fetchMovie = (dates) => {
 
 app.displayMovies = (movies) => {
     const section = document.querySelector('section');
-    section.innerHTML = '';
+    
+    let movieIndex = 0;
 
-    movies.forEach(movie => {
-        const { original_title, overview, poster_path, release_date, vote_average } = movie.results[0];
+    function nextMovie(){
+        section.innerHTML = '';
+
+        movies.forEach(movie => {
+        const { original_title, overview, poster_path, release_date, vote_average } = movie.results[movieIndex];
 
         const newListElement = document.createElement('li');
 
@@ -139,6 +143,15 @@ app.displayMovies = (movies) => {
         `;
         section.appendChild(newListElement)
     })
+    }
+
+    relaunchButton.addEventListener("click", e => {
+        relaunch.style.display = "block";
+        movieIndex++;
+        nextMovie()
+    });
+
+    nextMovie()
 }
 
 app.init = () => {
@@ -172,5 +185,3 @@ relaunchButton.addEventListener("click", e => {
 
 
 app.init()
-
-
