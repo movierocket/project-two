@@ -1,1 +1,1 @@
-Project 2 - TMDB API project. Juno College 2021
+Movie Rocket - Using The Movie Database API and CSS/SCSS. Juno College 2021
