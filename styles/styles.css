@@ -8,7 +8,6 @@
         -ms-flex-pack: center;
             justify-content: center;
   }
-
   .movieText {
     margin-left: 0px !important;
   }
@@ -18,20 +17,17 @@
     max-height: 250px !important;
     width: auto;
   }
-
   .imgContainer {
     height: 300px !important;
   }
-
   .movieResults {
     margin: 0 100px 50px 100px !important;
+    border-bottom: 1px grey solid;
   }
-
   .relaunch {
     text-align: center !important;
     height: 150px !important;
   }
-
   .relaunchButton {
     position: static !important;
     margin-top: 20px !important;
@@ -43,12 +39,10 @@
     margin: 0 !important;
     border-radius: 0px !important;
   }
-
   img {
     max-height: 200px !important;
     width: auto;
   }
-
   .imgContainer {
     height: 250px !important;
   }
@@ -357,6 +351,11 @@ p {
   font-size: 1.5rem;
   margin: 0;
   line-height: 3rem;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
 }
 
 header {
